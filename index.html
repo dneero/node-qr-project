@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Manager</title>
+</head>
+<body>
+  <h1>Create QR</h1>
+  <input id="code" placeholder="short code"><br>
+  <input id="content" placeholder="URL or Text"><br>
+  <button onclick="createQR()">Create</button>
+
+  <script>
+    function createQR() {
+      fetch('/api/qr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          code: code.value,
+          content: content.value
+        })
+      }).then(r => r.json()).then(console.log);
+    }
+  </script>
+</body>
+</html>
